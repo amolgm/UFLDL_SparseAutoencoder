@@ -1,18 +1,6 @@
 %% CS294A/CS294W Programming Assignment Starter Code
 
-%  Instructions
-%  ------------
-% 
-%  This file contains code that helps you get started on the
-%  programming assignment. You will need to complete the code in sampleIMAGES.m,
-%  sparseAutoencoderCost.m and computeNumericalGradient.m. 
-%  For the purpose of completing the assignment, you do not need to
-%  change the code in this file. 
-%
-%%======================================================================
-%% STEP 0: Here we provide the relevant parameters values that will
-%  allow your sparse autoencoder to get good filters; you do not need to 
-%  change the parameters below.
+%% STEP 0: Initializing parameters values
 
 visibleSize = 8*8;   % number of input units 
 hiddenSize = 25;     % number of hidden units 
@@ -24,9 +12,6 @@ beta = 3;            % weight of sparsity penalty term
 
 %%======================================================================
 %% STEP 1: Implement sampleIMAGES
-%
-%  After implementing sampleIMAGES, the display_network command should
-%  display a random sample of 200 patches from the dataset
 
 addpath ../data/IMAGES/
 
@@ -38,30 +23,6 @@ theta = initializeParameters(hiddenSize, visibleSize);
 
 %%======================================================================
 %% STEP 2: Implement sparseAutoencoderCost
-%
-%  You can implement all of the components (squared error cost, weight decay term,
-%  sparsity penalty) in the cost function at once, but it may be easier to do 
-%  it step-by-step and run gradient checking (see STEP 3) after each step.  We 
-%  suggest implementing the sparseAutoencoderCost function using the following steps:
-%
-%  (a) Implement forward propagation in your neural network, and implement the 
-%      squared error term of the cost function.  Implement backpropagation to 
-%      compute the derivatives.   Then (using lambda=beta=0), run Gradient Checking 
-%      to verify that the calculations corresponding to the squared error cost 
-%      term are correct.
-%
-%  (b) Add in the weight decay term (in both the cost function and the derivative
-%      calculations), then re-run Gradient Checking to verify correctness. 
-%
-%  (c) Add in the sparsity penalty term, then re-run Gradient Checking to 
-%      verify correctness.
-%
-%  Feel free to change the training settings when debugging your
-%  code.  (For example, reducing the training set size or 
-%  number of hidden units may make your code run faster; and setting beta 
-%  and/or lambda to zero may be helpful for debugging.)  However, in your 
-%  final submission of the visualized weights, please use parameters we 
-%  gave in Step 0 above.
 
 [cost, grad] = sparseAutoencoderCost(theta, visibleSize, hiddenSize, lambda, ...
                                      sparsityParam, beta, patches);
